@@ -7,9 +7,7 @@ package com.we.advanced.thread;
  **/
 public class ThreadLocalDemo {
     private static Integer num = 0;
-    /**
-     * num值放入ThreadLocal中
-     */
+
     public static final ThreadLocal<Integer> local = ThreadLocal.withInitial(() -> 0);
 
     //public static final ThreadLocal<Integer> local1 = new ThreadLocal<>();
