@@ -8,11 +8,23 @@ public class DeathLockDemo {
     public static void main(String[] args) {
         Account fromAccount = new Account("张三",1000);
         Account toAccount = new Account("李四",2000);
+
+        /*
         // 任务一：张三向李四转100元
         Thread threadA = new Thread(new TransferMoneyThread(fromAccount, toAccount, 100));
         // 任务二：李四向张三装200元
-        //Thread threadB = new Thread(new TransferMoneyThread(toAccount, fromAccount, 200));
+        Thread threadB = new Thread(new TransferMoneyThread(toAccount, fromAccount, 200));
+        */
+
+        Allocater allocater = new Allocater();
+        Thread threadA = new Thread(new TransferMoneyThread_DeathLockSolution01(fromAccount, toAccount, 100,allocater));
+        // 任务二：李四向张三装200元
+        Thread threadB = new Thread(new TransferMoneyThread_DeathLockSolution01(toAccount, fromAccount, 200,allocater));
+
+
+
+
         threadA.start();
-        //threadB.start();
+        threadB.start();
     }
 }
